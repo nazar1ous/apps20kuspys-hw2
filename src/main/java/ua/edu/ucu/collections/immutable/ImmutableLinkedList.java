@@ -212,9 +212,9 @@ public class ImmutableLinkedList implements ImmutableList {
     public static Node getNode(Node e, int movementsNumber) {
         Node curNode = e;
         for (int i = 0; i < movementsNumber; ++i) {
-            e = e.getNext();
+            curNode = curNode.getNext();
         }
-        return e;
+        return curNode;
     }
 
     @Override
