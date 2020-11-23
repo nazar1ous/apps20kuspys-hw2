@@ -64,10 +64,20 @@ public class ImmutableLinkedList implements ImmutableList {
     @Override
     public ImmutableLinkedList addAll(int index, Object[] c) {
         validateIndex(index);
+        if (c.length == 0){
+            return this;
+        }
         ImmutableLinkedList copy = new ImmutableLinkedList(toArray());
         if (index == 0) {
             copy = copy.addFirst(c[0]);
-            return copy.addAll(1, Arrays.copyOfRange(c, 1, c.length));
+            return copy.addAll(1,
+                    Arrays.copyOfRange(c, 1, c.length));
+        }
+        if (index == size){
+            copy = copy.addLast(c[0]);
+            return copy.addAll(size + 1,
+                    Arrays.copyOfRange(c, 1, c.length));
+
         }
         Node stNode = getNode(copy.getHead(), index - 1);
         Node prevIndexNode = stNode.getNext();
