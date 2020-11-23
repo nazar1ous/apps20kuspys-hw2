@@ -123,7 +123,7 @@ public class ImmutableArrayList implements ImmutableList{
 
     @Override
     public String toString(){
-        return Arrays.toString(toArray());
-//        return newStr.substring(1, newStr.length() - 1);
+        String newStr = Arrays.toString(toArray());
+        return newStr.substring(1, newStr.length() - 1);
     }
 }

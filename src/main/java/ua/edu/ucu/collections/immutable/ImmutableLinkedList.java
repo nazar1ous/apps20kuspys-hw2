@@ -66,13 +66,8 @@ public class ImmutableLinkedList implements ImmutableList {
         validateIndex(index);
         ImmutableLinkedList copy = new ImmutableLinkedList(toArray());
         if (index == 0) {
-            copy.setHead(new Node(c[0]));
-            copy.size = 1;
-            copy.setTail(copy.getHead());
-            if (c.length > 1) {
-                return copy.addAll(1, Arrays.copyOfRange(c, 1, c.length));
-            }
-            return copy;
+            copy = copy.addFirst(c[0]);
+            return copy.addAll(1, Arrays.copyOfRange(c, 1, c.length));
         }
         Node stNode = getNode(copy.getHead(), index - 1);
         Node prevIndexNode = stNode.getNext();
@@ -168,7 +163,7 @@ public class ImmutableLinkedList implements ImmutableList {
         Node curNode = head;
         for (int i = 0; i < size; ++i) {
             if (curNode.getValue() == e) {
-                return 1;
+                return i;
             }
             curNode = curNode.getNext();
         }
@@ -214,7 +209,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public String toString() {
-        return Arrays.toString(toArray());
+        String newStr = Arrays.toString(toArray());
+        return newStr.substring(1, newStr.length() - 1);
     }
 
     public ImmutableLinkedList addFirst(Object e) {
