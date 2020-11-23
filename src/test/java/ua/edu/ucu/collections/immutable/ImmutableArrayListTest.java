@@ -2,6 +2,7 @@ package ua.edu.ucu.collections.immutable;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class ImmutableArrayListTest {
@@ -14,7 +15,7 @@ public class ImmutableArrayListTest {
     private Object[] emptyArr;
 
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         commonArr = new Object[]{1, 9, 4, 10};
         bigArr = new Object[]{2, 4, 20, 1, -6,
                 4, 10, 33, 9};
@@ -24,22 +25,23 @@ public class ImmutableArrayListTest {
         bigList = new ImmutableArrayList(bigArr);
         commonList = new ImmutableArrayList(commonArr);
     }
+
     @Test
-    public void testToArray_1(){
+    public void testToArray_1() {
         assertArrayEquals(emptyList.toArray(), emptyArr);
         assertArrayEquals(bigList.toArray(), bigArr);
         assertArrayEquals(commonList.toArray(), commonArr);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testAddAll_exe1(){
+    public void testAddAll_exe1() {
         assertArrayEquals(emptyList.addAll(5, bigArr).toArray(), commonArr);
         assertArrayEquals(emptyList.addAll(-1, bigArr).toArray(), commonArr);
 
     }
 
     @Test
-    public void testAddAll(){
+    public void testAddAll() {
         assertArrayEquals(bigList.addAll(3, commonArr).toArray(),
                 new Object[]{2, 4, 20, 1, 9,
                         4, 10, 1, -6, 4, 10, 33, 9});
@@ -49,24 +51,24 @@ public class ImmutableArrayListTest {
     }
 
     @Test
-    public void testAddAll_without_id(){
+    public void testAddAll_without_id() {
         assertArrayEquals(commonList.addAll(commonArr).toArray(),
                 new Object[]{1, 9, 4, 10, 1, 9, 4, 10});
     }
 
     @Test
-    public void testAdd_common(){
+    public void testAdd_common() {
         ImmutableArrayList temp = new ImmutableArrayList(emptyList.toArray());
-        for (Object o: bigArr){
+        for (Object o : bigArr) {
             temp = temp.add(o);
         }
         assertArrayEquals(temp.toArray(), bigArr);
     }
 
     @Test
-    public void testAdd_index(){
+    public void testAdd_index() {
         ImmutableArrayList temp = new ImmutableArrayList(commonList.toArray());
-        for (Object o: commonArr){
+        for (Object o : commonArr) {
             temp = temp.add(3, o);
         }
         assertArrayEquals(temp.toArray(),
@@ -75,19 +77,19 @@ public class ImmutableArrayListTest {
     }
 
     @Test
-    public void testGet(){
+    public void testGet() {
         assertEquals(bigList.get(6), 10);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testGet_error(){
+    public void testGet_error() {
         assertEquals(bigList.get(15), 10);
         assertEquals(bigList.get(-1), 10);
 
     }
 
     @Test
-    public void testRemove(){
+    public void testRemove() {
         ImmutableArrayList act = commonList.remove(3);
         assertArrayEquals(act.toArray(), new Object[]{1, 9, 4});
         assertArrayEquals(commonList.toArray(), commonArr);
@@ -101,7 +103,7 @@ public class ImmutableArrayListTest {
     }
 
     @Test
-    public void testSet(){
+    public void testSet() {
         ImmutableArrayList act = commonList.set(3, 100);
         assertArrayEquals(act.toArray(), new Object[]{1, 9, 4, 100});
         assertArrayEquals(commonList.toArray(), commonArr);
@@ -109,13 +111,13 @@ public class ImmutableArrayListTest {
     }
 
     @Test
-    public void testIndexOf(){
+    public void testIndexOf() {
         assertEquals(emptyList.indexOf(40), -1);
         assertEquals(bigList.indexOf(10), 6);
     }
 
     @Test
-    public void testSize(){
+    public void testSize() {
         ImmutableArrayList act = bigList.remove(3);
         act = act.remove(3).remove(5);
         assertEquals(act.size(), bigArr.length - 3);
@@ -123,24 +125,24 @@ public class ImmutableArrayListTest {
     }
 
     @Test
-    public void testIsEmpty(){
+    public void testIsEmpty() {
         assertTrue(emptyList.isEmpty());
         assertFalse(bigList.isEmpty());
     }
 
     @Test
-    public void testToString(){
+    public void testToString() {
         assertEquals(emptyList.toString(), "");
         assertEquals(commonList.toString(), "1, 9, 4, 10");
     }
 
     @Test
-    public void testDefaultConstr(){
+    public void testDefaultConstr() {
         assertEquals(emptyList.size(), 0);
     }
 
     @Test
-    public void testClear(){
+    public void testClear() {
         ImmutableArrayList arr = new ImmutableArrayList(bigList.toArray());
         arr = arr.clear();
         assertEquals(arr.size(), 0);
