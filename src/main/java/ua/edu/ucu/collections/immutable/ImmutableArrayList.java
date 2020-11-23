@@ -2,24 +2,25 @@ package ua.edu.ucu.collections.immutable;
 
 import java.util.Arrays;
 
-public class ImmutableArrayList implements ImmutableList{
+public class ImmutableArrayList implements ImmutableList {
     private final Object[] array;
 
-    public ImmutableArrayList(){
+    public ImmutableArrayList() {
         array = new Object[0];
     }
 
-    public ImmutableArrayList(Object[] givenArray){
+    public ImmutableArrayList(Object[] givenArray) {
         array = givenArray.clone();
     }
 
     public void validateIndex(int index) {
-        if (index < 0 || index > array.length){
+        if (index < 0 || index > array.length) {
             throw new IndexOutOfBoundsException("Index" +
                     " <i> should be in bound: 0 < <i> > length");
         }
 
     }
+
     @Override
     public ImmutableArrayList add(Object e) {
         return add(array.length, e);
@@ -67,7 +68,7 @@ public class ImmutableArrayList implements ImmutableList{
         System.arraycopy(array, 0, newData, 0, index);
         int startIndex = index + 1;
         // If not so, we popped the last element
-        if (startIndex < array.length){
+        if (startIndex < array.length) {
             System.arraycopy(array, index + 1, newData,
                     index, array.length - index - 1);
         }
@@ -84,11 +85,11 @@ public class ImmutableArrayList implements ImmutableList{
 
     @Override
     public int indexOf(Object e) {
-        if (isEmpty()){
+        if (isEmpty()) {
             return -1;
         }
-        for (int i = 0; i < array.length; ++i){
-            if (array[i] == e){
+        for (int i = 0; i < array.length; ++i) {
+            if (array[i] == e) {
                 return i;
             }
         }
@@ -116,7 +117,7 @@ public class ImmutableArrayList implements ImmutableList{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String newStr = Arrays.toString(toArray());
         return newStr.substring(1, newStr.length() - 1);
     }

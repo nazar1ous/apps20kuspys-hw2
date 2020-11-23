@@ -1,4 +1,5 @@
 package ua.edu.ucu.collections.immutable;
+
 import lombok.Getter;
 import lombok.Setter;
 import ua.edu.ucu.collections.nodes.Node;
@@ -64,7 +65,7 @@ public class ImmutableLinkedList implements ImmutableList {
     @Override
     public ImmutableLinkedList addAll(int index, Object[] c) {
         validateIndex(index);
-        if (c.length == 0){
+        if (c.length == 0) {
             return this;
         }
         ImmutableLinkedList copy = new ImmutableLinkedList(toArray());
@@ -73,7 +74,7 @@ public class ImmutableLinkedList implements ImmutableList {
             return copy.addAll(1,
                     Arrays.copyOfRange(c, 1, c.length));
         }
-        if (index == size){
+        if (index == size) {
             copy = copy.addLast(c[0]);
             return copy.addAll(size + 1,
                     Arrays.copyOfRange(c, 1, c.length));
@@ -103,15 +104,15 @@ public class ImmutableLinkedList implements ImmutableList {
     public Object get(int index) {
 
         validateIndex(index);
-        if (size == 0){
+        if (size == 0) {
             throw new IndexOutOfBoundsException();
         }
         Node indexNode = getNode(head, index);
         return indexNode.getValue();
     }
 
-    public ImmutableLinkedList removeFirst(){
-        if (isEmpty()){
+    public ImmutableLinkedList removeFirst() {
+        if (isEmpty()) {
             throw new IndexOutOfBoundsException();
         }
         if (size == 1) {
@@ -126,8 +127,8 @@ public class ImmutableLinkedList implements ImmutableList {
         }
     }
 
-    public ImmutableLinkedList removeLast(){
-        if (isEmpty()){
+    public ImmutableLinkedList removeLast() {
+        if (isEmpty()) {
             throw new IndexOutOfBoundsException();
         }
         ImmutableLinkedList copy = new ImmutableLinkedList(toArray());
@@ -158,7 +159,7 @@ public class ImmutableLinkedList implements ImmutableList {
     }
 
     @Override
-    public ImmutableLinkedList set(int index, Object e){
+    public ImmutableLinkedList set(int index, Object e) {
         validateIndex(index);
         ImmutableLinkedList copy = new ImmutableLinkedList(toArray());
         getNode(copy.getHead(), index).setValue(e);
@@ -238,12 +239,12 @@ public class ImmutableLinkedList implements ImmutableList {
         return copy;
     }
 
-    public ImmutableLinkedList addLast(Object e){
+    public ImmutableLinkedList addLast(Object e) {
         ImmutableLinkedList copy = new ImmutableLinkedList(toArray());
-        if (isEmpty()){
+        if (isEmpty()) {
             copy.setHead(new Node(e));
             copy.setTail(copy.getHead());
-        }else{
+        } else {
             Node preLast = copy.getTail();
             copy.setTail(new Node(e));
             preLast.setNext(copy.getTail());
@@ -253,11 +254,11 @@ public class ImmutableLinkedList implements ImmutableList {
         return copy;
     }
 
-    public Object getFirst(){
+    public Object getFirst() {
         return get(0);
     }
 
-    public Object getLast(){
+    public Object getLast() {
         return get(size() - 1);
     }
 
