@@ -8,16 +8,12 @@ public class Node {
     private Object value;
     private Node prev;
     private Node next;
-
-    public void setDefaultLinks(){
+    public Node(){
         prev = null;
         next = null;
     }
-    public Node(){
-        setDefaultLinks();
-    }
     public Node(Object value){
+        this();
         this.value = value;
-        setDefaultLinks();
     }
 }

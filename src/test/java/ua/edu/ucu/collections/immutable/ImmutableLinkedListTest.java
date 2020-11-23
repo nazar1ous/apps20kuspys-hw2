@@ -134,6 +134,8 @@ public class ImmutableLinkedListTest {
     public void testIndexOf(){
         assertEquals(emptyList.indexOf(40), -1);
         assertEquals(bigList.indexOf(10), 6);
+
+        assertEquals(bigList.indexOf(229), -1);
     }
 
     @Test
@@ -192,5 +194,13 @@ public class ImmutableLinkedListTest {
     public void testGetFirstLast_common(){
         assertEquals(commonList.getFirst(), 1);
         assertEquals(commonList.getLast(), 10);
+    }
+
+    @Test
+    public void testClear(){
+        ImmutableLinkedList arr = new ImmutableLinkedList(bigList.toArray());
+        arr = arr.clear();
+        assertEquals(arr.size(), 0);
+        assertArrayEquals(arr.toArray(), new Object[0]);
     }
 }
