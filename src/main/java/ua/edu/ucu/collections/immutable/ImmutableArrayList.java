@@ -13,8 +13,7 @@ public class ImmutableArrayList implements ImmutableList{
         array = givenArray.clone();
     }
 
-    public void validateIndex(int index)
-            throws IndexOutOfBoundsException{
+    public void validateIndex(int index) {
         if (index < 0 || index > array.length){
             throw new IndexOutOfBoundsException("Index" +
                     " <i> should be in bound: 0 < <i> > length");
@@ -22,25 +21,23 @@ public class ImmutableArrayList implements ImmutableList{
 
     }
     @Override
-    public ImmutableList add(Object e) {
+    public ImmutableArrayList add(Object e) {
         return add(array.length, e);
     }
 
     @Override
-    public ImmutableList add(int index, Object e)
-            throws IndexOutOfBoundsException{
+    public ImmutableArrayList add(int index, Object e) {
         Object[] eArray = {e};
         return addAll(index, eArray);
     }
 
     @Override
-    public ImmutableList addAll(Object[] c) {
+    public ImmutableArrayList addAll(Object[] c) {
         return addAll(array.length, c);
     }
 
     @Override
-    public ImmutableList addAll(int index, Object[] c)
-            throws IndexOutOfBoundsException{
+    public ImmutableArrayList addAll(int index, Object[] c) {
         // As we have an immutable structure
         // There is no need in increasing length by 2
         validateIndex(index);
@@ -57,15 +54,13 @@ public class ImmutableArrayList implements ImmutableList{
     }
 
     @Override
-    public Object get(int index)
-            throws IndexOutOfBoundsException{
+    public Object get(int index) {
         validateIndex(index);
         return array[index];
     }
 
     @Override
-    public ImmutableList remove(int index)
-            throws IndexOutOfBoundsException{
+    public ImmutableArrayList remove(int index) {
         validateIndex(index);
         Object[] newData = new Object[array.length - 1];
         // Copy [0, index - 1]
@@ -80,8 +75,7 @@ public class ImmutableArrayList implements ImmutableList{
     }
 
     @Override
-    public ImmutableList set(int index, Object e)
-            throws IndexOutOfBoundsException{
+    public ImmutableArrayList set(int index, Object e) {
         validateIndex(index);
         Object[] newData = array.clone();
         newData[index] = e;
@@ -107,7 +101,7 @@ public class ImmutableArrayList implements ImmutableList{
     }
 
     @Override
-    public ImmutableList clear() {
+    public ImmutableArrayList clear() {
         return new ImmutableArrayList();
     }
 
